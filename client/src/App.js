@@ -1,9 +1,10 @@
-import React, {Component} from "react";
+import React, { Component } from "react";
 import NavBar from "./components/NavBar";
 import Jumbotron from "./components/Jumbotron";
-import {firebase} from "./firebase";
-// import Question from './components/Questions';
+import { firebase } from "./firebase";
+import Question from './components/Questions';
 import StartPage from './components/StartPage';
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
   state = {
@@ -14,23 +15,23 @@ class App extends Component {
     // playerScore: 0,
     // playerWrong: 0
 
-};
+  };
 
-  componentDidMount(){
+  componentDidMount() {
     firebase.auth.onAuthStateChanged(firebaseUser => {
-      if(firebaseUser) {
-          console.log(`firebaseUser=${firebaseUser}`);
-          var trueUser = firebaseUser.email;  
-          console.log("trueUs er=" , trueUser);
-          this.setState({trueUser})
-          
+      if (firebaseUser) {
+        console.log(`firebaseUser=${firebaseUser}`);
+        var trueUser = firebaseUser.email;
+        console.log("trueUs er=", trueUser);
+        this.setState({ trueUser })
+
 
       } else {
-          console.log('not logged in');
-          this.setState({trueUser:null})
+        console.log('not logged in');
+        this.setState({ trueUser: null })
       }
     });
-  
+
   };
 
   render() {
@@ -39,8 +40,12 @@ class App extends Component {
         <NavBar username={this.state.trueUser}></NavBar>
         <Jumbotron>
         </Jumbotron>
-        <StartPage></StartPage>
-          {/* <Question/> */}
+        <Router>
+          <div>
+            <Route exact path="/" component={StartPage} />
+            <Route exact path="/game" component={Question} />
+          </div>
+        </Router>
       </div>
     );
   }

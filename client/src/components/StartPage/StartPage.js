@@ -42,7 +42,7 @@ const StartPage = () => (
                     <li>Click "Start Game" when you're ready to begin!</li>
                 </ul>
             </p>
-            <a class="waves-effect waves-light btn-large" onClick={this.startGame} style={button}>Start Game</a>
+            <a class="waves-effect waves-light btn-large" href="/game" onClick={console.log("CLICKED")} style={button}>Start Game</a>
         </div>
     </div>
 );
