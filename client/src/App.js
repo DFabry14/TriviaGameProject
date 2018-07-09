@@ -2,9 +2,8 @@ import React, {Component} from "react";
 import NavBar from "./components/NavBar";
 import Jumbotron from "./components/Jumbotron";
 import {firebase} from "./firebase";
-import Question from './components/Questions'
-
-
+// import Question from './components/Questions';
+import StartPage from './components/StartPage';
 
 class App extends Component {
   state = {
@@ -40,7 +39,8 @@ class App extends Component {
         <NavBar username={this.state.trueUser}></NavBar>
         <Jumbotron>
         </Jumbotron>
-          <Question/>
+        <StartPage></StartPage>
+          {/* <Question/> */}
       </div>
     );
   }
