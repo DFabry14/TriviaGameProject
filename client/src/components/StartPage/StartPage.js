@@ -1,5 +1,5 @@
 import React from "react"
-import Question from "../Questions"
+// import Question from "../Questions"
 
 const style = {
     backgroundColor: "blue",

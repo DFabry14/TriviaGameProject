@@ -30,17 +30,51 @@ class Question extends Component {
     componentWillMount() {
         API.getQuestions("easy")
             .then(res => {
-                const questions = [];
+                const questions = []
                 for (let i = 0; i < 10; i++) {
-                    questions.push({
+
+                    const answers = [
+                        {
+                            correct: true,
+                            answer: res.data.results[i].correct_answer
+                        },
+                        {
+                            correct: false,
+                            answer: res.data.results[i].incorrect_answers[0]
+                        },
+                        {
+                            correct: false,
+                            answer: res.data.results[i].incorrect_answers[1]
+                        },
+                        {
+                            correct: false,
+                            answer: res.data.results[i].incorrect_answers[2]
+                        },
+                    ];
+                        console.log(answers)
+                        questions.push({
                         question: res.data.results[i].question,
-                        correctAnswers: res.data.results[i].correct_answer,
-                        wrongAnswers: res.data.results[i].incorrect_answers
+                        // correctAnswers: res.data.results[i].correct_answer,
+                        // wrongAnswers: res.data.results[i].incorrect_answers,
+                        answers: this.shuffle(answers)
                     });
                 }
-                this.setState({ questions });
+                this.setState({ questions }) 
             })
     }
+
+
+    shuffle = data => {
+        let i = data.length - 1;
+        while (i > 0) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = data[i];
+          data[i] = data[j];
+          data[j] = temp;
+          i--;
+        }
+        return data;
+      };
 
     handleTimeout = () => {
         if (this.state.answerCorrect) {
@@ -77,13 +111,12 @@ class Question extends Component {
     }
 
     render() {
-        // this.shuffle()
         return (
             <div className="container center">
                 <div className="row">
                     {/* {console.log("score is", this.state.playerScore)}
                     {console.log("wrong guesses:", this.state.playerWrong)} */}
-                    {/* {console.log("questions array", this.state.questions)} */}
+                    {/* {console.log("answers", this.state.answers[0].answer)} */}
                     {console.log("counter:", this.state.counter)}
                     {}
                     <div className="col s12 m6">
@@ -92,10 +125,10 @@ class Question extends Component {
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
                                 <div>
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : this.endGame()}<br /><br />
-                                    <div><Button type="submit" id="correct" disabled={this.state.isDisabled} onClick={this.clickCheck}>{this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].correctAnswers : this.endGame()}</Button></div>
-                                    <br />
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].wrongAnswers.map(answer => (
-                                        <div><Button type="submit" id="wrong" disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
+                                    {/* <div><Button type="submit" id="correct" disabled={this.state.isDisabled} onClick={this.clickCheck}>{this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].correctAnswers : this.endGame()}</Button></div>
+                                    <br /> */}
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({answer}) => (
+                                        <div><Button type="submit" disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
                                     )) : this.endGame()}
 
                                     < br />
