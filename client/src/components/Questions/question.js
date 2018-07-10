@@ -5,6 +5,7 @@ import { Button } from 'react-materialize'
 import './question.css'
 // import ResultsPage from '../ResultsPage';
 import Footer from '../Footer'
+import ResultsPage from '../ResultsPage';
 
 
 const style = {
@@ -74,9 +75,8 @@ class Question extends Component {
       };
 
     handleTimeout = () => {
-        if (this.state.answerCorrect) {
+        if (this.state.isDisabled === true) {
             this.setState({
-                playerScore: this.state.playerScore + 1,
                 counter: this.state.counter + 1,
                 isDisabled: false,
                 answerCorrect: null
@@ -92,18 +92,29 @@ class Question extends Component {
     }
 
     endGame = () => {
-        if ((this.state.playerScore + this.state.playerWrong) === 10) {
-            console.log("TOTAL IS TEN");
+        if (this.state.counter > 10) {
+            console.log("End of game!")
         }
     }
 
     clickCheck = event => {
         let answer = event.target.id
-        console.log(answer);
+
         if (answer === "correct") {
-            this.setState({ isDisabled: !this.state.isDisabled, answerCorrect: true });
+            this.setState({ 
+                isDisabled: !this.state.isDisabled,
+                answerCorrect: true,
+                playerScore: this.state.playerScore + 1,
+                // counter: this.state.counter + 1
+             });
         } else {
-            this.setState({ isDisabled: !this.state.isDisabled, answerCorrect: false });
+            this.setState({ 
+                isDisabled: !this.state.isDisabled,
+                answerCorrect: null,
+                playerWrong: this.state.playerWrong + 1,
+
+                // counter: this.state.counter + 1
+            });
         }
     }
 
@@ -120,7 +131,6 @@ class Question extends Component {
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
                                         <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} handleTimeout={this.handleTimeout}>{answer}</Button><br /><br /></div>
                                     )) : this.endGame()}
-
                                     < br />
                                     {/* <ResultsPage playerScore={this.state.playerScore}/> */}
                                 </div>
