@@ -3,7 +3,7 @@ import API from '../../utils/API'
 import Countdown from '../Countdown/Countdown'
 import { Button } from 'react-materialize'
 import './question.css'
-import ResultsPage from '../ResultsPage';
+// import ResultsPage from '../ResultsPage';
 import Footer from '../Footer'
 
 
@@ -35,27 +35,24 @@ class Question extends Component {
 
                     const answers = [
                         {
-                            correct: true,
+                            correct: "correct",
                             answer: res.data.results[i].correct_answer
                         },
                         {
-                            correct: false,
+                            correct: "not-correct",
                             answer: res.data.results[i].incorrect_answers[0]
                         },
                         {
-                            correct: false,
+                            correct: "not-correct",
                             answer: res.data.results[i].incorrect_answers[1]
                         },
                         {
-                            correct: false,
+                            correct: "not-correct",
                             answer: res.data.results[i].incorrect_answers[2]
                         },
                     ];
-                        console.log(answers)
                         questions.push({
                         question: res.data.results[i].question,
-                        // correctAnswers: res.data.results[i].correct_answer,
-                        // wrongAnswers: res.data.results[i].incorrect_answers,
                         answers: this.shuffle(answers)
                     });
                 }
@@ -102,7 +99,7 @@ class Question extends Component {
 
     clickCheck = event => {
         let answer = event.target.id
-
+        console.log(answer);
         if (answer === "correct") {
             this.setState({ isDisabled: !this.state.isDisabled, answerCorrect: true });
         } else {
@@ -114,25 +111,18 @@ class Question extends Component {
         return (
             <div className="container center">
                 <div className="row">
-                    {/* {console.log("score is", this.state.playerScore)}
-                    {console.log("wrong guesses:", this.state.playerWrong)} */}
-                    {/* {console.log("answers", this.state.answers[0].answer)} */}
-                    {console.log("counter:", this.state.counter)}
-                    {}
                     <div className="col s12 m6">
                         <div className="card blue-grey darken-1">
                             <div className="card-content white-text">
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
                                 <div>
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : this.endGame()}<br /><br />
-                                    {/* <div><Button type="submit" id="correct" disabled={this.state.isDisabled} onClick={this.clickCheck}>{this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].correctAnswers : this.endGame()}</Button></div>
-                                    <br /> */}
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({answer}) => (
-                                        <div><Button type="submit" disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
+                                        <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} handleTimeout={this.handleTimeout}>{answer}</Button><br /><br /></div>
                                     )) : this.endGame()}
 
                                     < br />
-                                    <ResultsPage playerScore={this.state.playerScore}/>
+                                    {/* <ResultsPage playerScore={this.state.playerScore}/> */}
                                 </div>
                             </div>
                         </div>
