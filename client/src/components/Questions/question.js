@@ -77,7 +77,6 @@ class Question extends Component {
     }
 
     render() {
-        // this.shuffle()
         return (
             <div className="container center">
                 <div className="row">

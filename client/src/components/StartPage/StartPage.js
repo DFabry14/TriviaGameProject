@@ -1,5 +1,5 @@
 import React from "react"
-import Question from "../Questions"
+import { Row, Input} from "react-materialize"
 
 const style = {
     backgroundColor: "blue",
@@ -13,7 +13,8 @@ const button = {
     backgroundColor: 'black',
     marginLeft: '42.5%',
     height: '50px',
-    width: '225px'
+    width: '225px',
+    paddingBottom: '50px'
 };
 const inst = {
     textAlign: "center",
@@ -29,6 +30,17 @@ const headline = {
     fontFamily: 'Contrail One',
     paddingTop: '50px'
 };
+const diff = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    marginLeft: '42.5%',
+    height: '50px',
+    width: '225px',
+    marginBottom: '20px',
+    textAlign: 'center'
+};
 
 const StartPage = () => (
     <div className="start" style={style}>
@@ -39,11 +51,19 @@ const StartPage = () => (
                     <li>Login to your account above.</li>
                     <li>Invite friends to play with you!</li>
                     <li>You will be shown ten questions and get five seconds to answer each one.</li>
+                    <li>Choose your desired difficulty in the dropdown.</li>
                     <li>Click "Start Game" when you're ready to begin!</li>
                 </ul>
             </p>
-            <a class="waves-effect waves-light btn-large" href="/game" onClick={console.log("CLICKED")} style={button}>Start Game</a>
+            <Row style={diff}>
+                <Input s={12} type='select' defaultValue='easy' style={diff}>
+                    <option value='easy'>Easy</option>
+                    <option value='medium'>Medium</option>
+                    <option value='hard'>Hard</option>
+                </Input>
+            </Row>
         </div>
+        <a className="waves-effect waves-light btn-large" href="/game" onClick={console.log("CLICKED")} style={button}>Start Game</a>
     </div>
 );
 
