@@ -4,6 +4,7 @@ import Jumbotron from "./components/Jumbotron";
 import { firebase } from "./firebase";
 import Question from './components/Questions';
 import StartPage from './components/StartPage';
+import ResultsPage from './components/ResultsPage'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {
@@ -44,6 +45,7 @@ class App extends Component {
           <div>
             <Route exact path="/" component={StartPage} />
             <Route exact path="/game" component={Question} />
+            {/* <Route exact path="/endGame" component={ResultsPage} /> */}
           </div>
         </Router>
       </div>

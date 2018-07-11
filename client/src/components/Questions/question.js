@@ -3,8 +3,9 @@ import API from '../../utils/API'
 import Countdown from '../Countdown/Countdown'
 import { Button } from 'react-materialize'
 import './question.css'
-import ResultsPage from '../ResultsPage';
+// import ResultsPage from '../ResultsPage';
 import Footer from '../Footer'
+import ResultsPage from '../ResultsPage';
 
 
 const style = {
@@ -30,22 +31,52 @@ class Question extends Component {
     componentWillMount() {
         API.getQuestions("easy")
             .then(res => {
-                const questions = [];
+                const questions = []
                 for (let i = 0; i < 10; i++) {
-                    questions.push({
+
+                    const answers = [
+                        {
+                            correct: "correct",
+                            answer: res.data.results[i].correct_answer
+                        },
+                        {
+                            correct: "not-correct",
+                            answer: res.data.results[i].incorrect_answers[0]
+                        },
+                        {
+                            correct: "not-correct",
+                            answer: res.data.results[i].incorrect_answers[1]
+                        },
+                        {
+                            correct: "not-correct",
+                            answer: res.data.results[i].incorrect_answers[2]
+                        },
+                    ];
+                        questions.push({
                         question: res.data.results[i].question,
-                        correctAnswers: res.data.results[i].correct_answer,
-                        wrongAnswers: res.data.results[i].incorrect_answers
+                        answers: this.shuffle(answers)
                     });
                 }
-                this.setState({ questions });
+                this.setState({ questions }) 
             })
     }
 
+
+    shuffle = data => {
+        let i = data.length - 1;
+        while (i > 0) {
+          const j = Math.floor(Math.random() * (i + 1));
+          const temp = data[i];
+          data[i] = data[j];
+          data[j] = temp;
+          i--;
+        }
+        return data;
+      };
+
     handleTimeout = () => {
-        if (this.state.answerCorrect) {
+        if (this.state.isDisabled === true) {
             this.setState({
-                playerScore: this.state.playerScore + 1,
                 counter: this.state.counter + 1,
                 isDisabled: false,
                 answerCorrect: null
@@ -61,8 +92,8 @@ class Question extends Component {
     }
 
     endGame = () => {
-        if ((this.state.playerScore + this.state.playerWrong) === 10) {
-            console.log("TOTAL IS TEN");
+        if (this.state.counter > 10) {
+            console.log("End of game!")
         }
     }
 
@@ -70,9 +101,20 @@ class Question extends Component {
         let answer = event.target.id
 
         if (answer === "correct") {
-            this.setState({ isDisabled: !this.state.isDisabled, answerCorrect: true });
+            this.setState({ 
+                isDisabled: !this.state.isDisabled,
+                answerCorrect: true,
+                playerScore: this.state.playerScore + 1,
+                // counter: this.state.counter + 1
+             });
         } else {
-            this.setState({ isDisabled: !this.state.isDisabled, answerCorrect: false });
+            this.setState({ 
+                isDisabled: !this.state.isDisabled,
+                answerCorrect: null,
+                playerWrong: this.state.playerWrong + 1,
+
+                // counter: this.state.counter + 1
+            });
         }
     }
 
@@ -80,25 +122,17 @@ class Question extends Component {
         return (
             <div className="container center">
                 <div className="row">
-                    {/* {console.log("score is", this.state.playerScore)}
-                    {console.log("wrong guesses:", this.state.playerWrong)} */}
-                    {/* {console.log("questions array", this.state.questions)} */}
-                    {console.log("counter:", this.state.counter)}
-                    {}
                     <div className="col s12 m6">
                         <div className="card blue-grey darken-1">
                             <div className="card-content white-text">
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
                                 <div>
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : this.endGame()}<br /><br />
-                                    <div><Button type="submit" id="correct" disabled={this.state.isDisabled} onClick={this.clickCheck}>{this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].correctAnswers : this.endGame()}</Button></div>
-                                    <br />
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].wrongAnswers.map(answer => (
-                                        <div><Button type="submit" id="wrong" disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
+                                        <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} handleTimeout={this.handleTimeout}>{answer}</Button><br /><br /></div>
                                     )) : this.endGame()}
-
                                     < br />
-                                    <ResultsPage playerScore={this.state.playerScore}/>
+                                    {/* <ResultsPage playerScore={this.state.playerScore}/> */}
                                 </div>
                             </div>
                         </div>

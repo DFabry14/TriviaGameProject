@@ -2,16 +2,16 @@ import React, { Component } from "react";
 
 
 class Countdown extends Component {
-  state = { currentCount: 5 }
+  state = { currentCount: 10 }
 
   timer = () => {
     this.setState({
       currentCount: this.state.currentCount - 1
     })
-    if (this.state.currentCount < 1) {
+    if (this.state.currentCount < 1 || this.state.onClick === true) {
       // clearInterval(this.intervalId);
       console.log('timer expired, playerWrong ++')
-      this.setState({currentCount: 5})
+      this.setState({currentCount: 10})
       this.props.handleTimeout();
     } else if (this.state.onClick) {
         this.setState({currentCount: this.state.currentCount + 1})
