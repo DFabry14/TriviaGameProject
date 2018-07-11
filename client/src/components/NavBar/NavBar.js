@@ -68,9 +68,7 @@ class NavBar extends Component{
             <div className="modal-content">
                 <div className="modal-header">
                     <h6 className="modal-title" id="exampleModalLongTitle">Sign In</h6>
-                    <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+
                 </div>
 
                 <div className="modal-body">
