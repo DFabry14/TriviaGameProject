@@ -92,9 +92,8 @@ class Question extends Component {
     }
 
     endGame = () => {
-        if (this.state.counter > 10) {
-            console.log("End of game!")
-        }
+
+            console.log("End of game!");
     }
 
     clickCheck = event => {
