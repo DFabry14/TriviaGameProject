@@ -4,7 +4,7 @@ import React, { Component } from "react";
 
 class Countdown extends Component {
   state = {
-    currentCount: 3,
+    currentCount: 10,
     totalCount: 0
   }
 
@@ -16,7 +16,7 @@ class Countdown extends Component {
     if (this.state.currentCount < 1 || this.state.onClick === true) {
       // clearInterval(this.intervalId);
       this.setState({totalCount: this.state.totalCount + 1})
-      this.setState({ currentCount: 3 })
+      this.setState({ currentCount: 10 })
       this.props.handleTimeout();
     } else if (this.state.totalCount > 9) {
       this.setState({currentCount: null})
