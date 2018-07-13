@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Row, Input, Button, Modal, Footer } from "react-materialize"
+import { Row, Input, Modal, Footer } from "react-materialize"
 import {auth} from "../../firebase"
 // import Question from "../Questions"
 
@@ -16,7 +16,7 @@ const button = {
     marginLeft: '42.5%',
     height: '50px',
     width: '225px',
-    padding: '10px 40px',
+    padding: '0 40px',
 };
 const footerStyle = {
     position: "fixed",
@@ -122,7 +122,7 @@ class StartPage extends Component {
                     <Modal
             style={font}
             header='Please login or create a profile:'
-            trigger={<Button className="waves-effect waves-light btn-large" style={button}>Login</Button>}>
+            trigger={<a className="waves-effect waves-light btn-large"  href="" style={button}>Login</a>}>
             <div className="modal-content">
                 <div className="modal-header">
                     <h6 className="modal-title" id="exampleModalLongTitle">Sign In</h6>
