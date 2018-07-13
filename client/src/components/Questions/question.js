@@ -126,8 +126,7 @@ class Question extends Component {
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : ''}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
                                         <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
-                                    )) : this.endGame()}
-                                    {/* {this.state.counter > 10 ? this.endGame(): ''} */}
+                                    )) : ''}
                                     < br />
                                 </div>
                             </div>
