@@ -4,7 +4,7 @@ import Jumbotron from "./components/Jumbotron";
 import { firebase } from "./firebase";
 import Question from './components/Questions';
 import StartPage from './components/StartPage';
-import ResultsPage from './components/ResultsPage'
+// import ResultsPage from './components/ResultsPage'
 import { BrowserRouter as Router, Route } from "react-router-dom";
 
 class App extends Component {

@@ -3,9 +3,7 @@ import API from '../../utils/API'
 import Countdown from '../Countdown/Countdown'
 import { Button } from 'react-materialize'
 import './question.css'
-// import ResultsPage from '../ResultsPage';
 import Footer from '../Footer'
-import ResultsPage from '../ResultsPage';
 
 
 const style = {
@@ -92,8 +90,7 @@ class Question extends Component {
     }
 
     endGame = () => {
-
-            console.log("End of game!");
+ 
     }
 
     clickCheck = event => {
@@ -126,12 +123,12 @@ class Question extends Component {
                             <div className="card-content white-text">
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
                                 <div>
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : this.endGame()}<br /><br />
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : ''}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} handleTimeout={this.handleTimeout}>{answer}</Button><br /><br /></div>
+                                        <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
                                     )) : this.endGame()}
+                                    {/* {this.state.counter > 10 ? this.endGame(): ''} */}
                                     < br />
-                                    {/* <ResultsPage playerScore={this.state.playerScore}/> */}
                                 </div>
                             </div>
                         </div>
