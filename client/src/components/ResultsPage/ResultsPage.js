@@ -1,5 +1,5 @@
 import React from "react"
-import { Row } from "react-materialize"
+// import { Footer } from "react-materialize"
 import './ResultsPage.css'
 // import Question from "../Questions"
 
@@ -32,17 +32,26 @@ const headline = {
     fontFamily: 'Contrail One',
     paddingTop: '50px'
 };
-const diff = {
-    fontFamily: 'Contrail One',
-    fontSize: '32px',
-    color: 'orange',
-    backgroundColor: 'black',
-    marginLeft: '42.5%',
-    height: '50px',
-    width: '225px',
-    marginBottom: '20px',
-    textAlign: 'center'
-};
+// const footerStyle = {
+//     position: "fixed",
+//     bottom: "0px",
+//     backgroundColor: "grey",
+//     height: "60px",
+//     marginTop: "0px",
+//     borderTopStyle: "solid",
+//     borderTopColor: "orange"
+// }
+// const diff = {
+//     fontFamily: 'Contrail One',
+//     fontSize: '32px',
+//     color: 'orange',
+//     backgroundColor: 'black',
+//     marginLeft: '42.5%',
+//     height: '50px',
+//     width: '225px',
+//     marginBottom: '20px',
+//     textAlign: 'center'
+// };
 
 const ResultsPage = () => (
     <div className="start" style={style}>
