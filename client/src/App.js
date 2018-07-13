@@ -13,8 +13,8 @@ class App extends Component {
     correctAnswer: '',
     wrongAnswers: [],
     allAnswers: [],
-    // playerScore: 0,
-    // playerWrong: 0
+    playerScore: 0,
+    playerWrong: 0
 
   };
 
@@ -38,7 +38,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar username={this.state.trueUser}></NavBar>
+        {/* <NavBar username={this.state.trueUser}></NavBar> */}
         <Jumbotron>
         </Jumbotron>
         <Router>

@@ -26,37 +26,37 @@ const btn = {
 };
 
 class NavBar extends Component{
-    state = { email: "", password: "", error:null }
+        state = { email: "", password: "", error:null }
 
-    handleInputChange = event => {
-        const { name, value } = event.target;
-        this.setState({
-          [name]: value
-        });
-      }
+        handleInputChange = event => {
+            const { name, value } = event.target;
+            this.setState({
+            [name]: value
+            });
+        }
 
-      handleCreateUser = event => {
-          event.preventDefault();
-          auth.doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
-          .then(()=>this.setState({email:"", password:"", error:null}))
-          .catch(error =>{
-              this.setState({error})
-          });
-      }
+        handleCreateUser = event => {
+            event.preventDefault();
+            auth.doCreateUserWithEmailAndPassword(this.state.email, this.state.password)
+            .then(()=>this.setState({email:"", password:"", error:null}))
+            .catch(error =>{
+                this.setState({error})
+            });
+        }
 
-      handleUserLogin = event => {
-          event.preventDefault();
-          auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
-          .then(()=>this.setState({email:"", password:"", error:null}))
-          .catch(error =>{
-              this.setState({error})
-          });
-      }
+        handleUserLogin = event => {
+            event.preventDefault();
+            auth.doSignInWithEmailAndPassword(this.state.email, this.state.password)
+            .then(()=>this.setState({email:"", password:"", error:null}))
+            .catch(error =>{
+                this.setState({error})
+            });
+        }
 
-      handleUserLogout = event => {
-          event.preventDefault();
-          auth.doSignOut();
-      }
+        handleUserLogout = event => {
+            event.preventDefault();
+            auth.doSignOut();
+        }
 
     render(){
         return(

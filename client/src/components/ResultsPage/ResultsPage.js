@@ -1,5 +1,5 @@
 import React from "react"
-// import { Footer } from "react-materialize"
+import { Footer } from "react-materialize"
 import './ResultsPage.css'
 // import Question from "../Questions"
 
@@ -8,6 +8,16 @@ const style = {
     height: "700px",
     marginTop: "-30px"
 };
+const footerStyle = {
+    position: "fixed",
+    bottom: "0px",
+    backgroundColor: "grey",
+    height: "80px",
+    width: "100%",
+    marginTop: "0px",
+    borderTopStyle: "solid",
+    borderTopColor: "orange"
+}
 const button = {
     fontFamily: 'Contrail One',
     fontSize: '32px',
@@ -64,6 +74,9 @@ const ResultsPage = () => (
             </p>
         </div>
         <a className="waves-effect waves-light btn-large" href="/" onClick={console.log("CLICKED")} style={button}>Play Again!</a>
+        <div>
+        <Footer style={footerStyle}></Footer>
+        </div>
     </div>
 );
 

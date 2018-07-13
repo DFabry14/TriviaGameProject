@@ -69,6 +69,7 @@ class Question extends Component {
         answerCorrect: null,
         isDisabled: false
     };
+    
 
     componentWillMount() {
         API.getQuestions("easy")
