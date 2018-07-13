@@ -30,7 +30,7 @@ const button = {
     backgroundColor: 'black',
     height: '50px',
     width: 'auto',
-    padding: '0 5% 5% 5%',
+    padding: '10px 40px',
 
 };
 const inst = {
@@ -166,7 +166,7 @@ class Question extends Component {
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <a className="waves-effect waves-light btn-large" href="/endGame" onClick={console.log("CLICKED")} style={button}>End Game</a>}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><a type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</a><br /><br /></div>
+                                        <div><a id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</a><br /><br /></div>
                                     )) : ''}
                                     < br />
                         </div>
