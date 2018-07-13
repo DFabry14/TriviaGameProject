@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import Jumbotron from "./components/Jumbotron";
 import { firebase } from "./firebase";
 import Question from './components/Questions';
