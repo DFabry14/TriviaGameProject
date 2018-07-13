@@ -3,6 +3,7 @@ import API from '../../utils/API'
 import Countdown from '../Countdown/Countdown'
 import './question.css'
 import Footer from '../Footer'
+import Button from '../../../node_modules/react-materialize/lib/Button';
 // import ResultsPage from '../ResultsPage'
 
 
@@ -23,14 +24,13 @@ const style = {
     marginTop: "-30px"
 };
 const button = {
-
     fontFamily: 'Contrail One',
     fontSize: '32px',
     color: 'orange',
     backgroundColor: 'black',
     height: '50px',
     width: 'auto',
-    padding: '10px 40px',
+    padding: '0 40px',
 
 };
 const inst = {
@@ -167,7 +167,7 @@ class Question extends Component {
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <a className="waves-effect waves-light btn-large" href="/endGame" onClick={console.log("CLICKED")} style={button}>End Game</a>}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><a href="" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</a><br /><br /></div>
+                                        <div><Button id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</Button><br /><br /></div>
                                     )) : ''}
                                     < br />
                         </div>
