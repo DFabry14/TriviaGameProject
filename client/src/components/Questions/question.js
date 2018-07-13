@@ -60,6 +60,7 @@ const inst = {
 // };
 
 class Question extends Component {
+
     state = {
         questions: null,
         counter: 0,

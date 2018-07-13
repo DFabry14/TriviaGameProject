@@ -1,7 +1,7 @@
 import React from "react"
 import { Footer } from "react-materialize"
 import './ResultsPage.css'
-// import Question from "../Questions"
+import "../Questions"
 
 const style = {
     backgroundColor: "blue",
@@ -63,13 +63,14 @@ const headline = {
 //     textAlign: 'center'
 // };
 
-const ResultsPage = () => (
+const ResultsPage = (props) => (
     <div className="start" style={style}>
         <div className="button">
             <p className="instructions" style={headline}>
                 End of Game!
                 <ul style={inst}>
-                    <li>You did great! Your score is:</li>
+                    <li>You did great! </li>
+                    <li>Your score is:</li><br/>
                 </ul>
             </p>
         </div>
