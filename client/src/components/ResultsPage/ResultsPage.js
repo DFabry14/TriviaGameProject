@@ -1,14 +1,61 @@
-import React from 'react';
+import React from "react"
+import { Row } from "react-materialize"
+import './ResultsPage.css'
+// import Question from "../Questions"
 
-const ResultsPage = props => (
-    <div className="App container">
-            <thread>
-                <tr>
-                    <th> High Score:{props.playerScore}</th>
-                </tr>
-            </thread>
+const style = {
+    backgroundColor: "blue",
+    height: "700px",
+    marginTop: "-30px"
+};
+const button = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    marginLeft: '42.5%',
+    height: '50px',
+    width: '225px',
+    paddingBottom: '50px'
+};
+const inst = {
+    textAlign: "center",
+    fontFamily: "Contrail One",
+    fontSize: "30px",
+    color: "orange",
+    paddingTop: "30px"
+};
+const headline = {
+    fontSize: "42px",
+    color: "orange",
+    textAlign: "center",
+    fontFamily: 'Contrail One',
+    paddingTop: '50px'
+};
+const diff = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    marginLeft: '42.5%',
+    height: '50px',
+    width: '225px',
+    marginBottom: '20px',
+    textAlign: 'center'
+};
+
+const ResultsPage = () => (
+    <div className="start" style={style}>
+        <div className="button">
+            <p className="instructions" style={headline}>
+                End of Game!
+                <ul style={inst}>
+                    <li>You did great! Your score is:</li>
+                </ul>
+            </p>
+        </div>
+        <a className="waves-effect waves-light btn-large" href="/" onClick={console.log("CLICKED")} style={button}>Play Again!</a>
     </div>
 );
-
 
 export default ResultsPage;

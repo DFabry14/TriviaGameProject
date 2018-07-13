@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
 import Countdown from '../Countdown/Countdown'
-import { Button } from 'react-materialize'
 import './question.css'
 import Footer from '../Footer'
+// import ResultsPage from '../ResultsPage'
 
 
-const style = {
+const footerStyle = {
     position: "fixed",
     bottom: "0px",
     backgroundColor: "grey",
@@ -15,6 +15,46 @@ const style = {
     borderTopStyle: "solid",
     borderTopColor: "orange"
 }
+const style = {
+    backgroundColor: "blue",
+    height: "700px",
+    marginTop: "-30px"
+};
+const button = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    marginLeft: '42.5%',
+    height: '50px',
+    width: '225px',
+    paddingBottom: '50px'
+};
+const inst = {
+    textAlign: "center",
+    fontFamily: "Contrail One",
+    fontSize: "30px",
+    color: "orange",
+    paddingTop: "30px"
+};
+const headline = {
+    fontSize: "42px",
+    color: "orange",
+    textAlign: "center",
+    fontFamily: 'Contrail One',
+    paddingTop: '50px'
+};
+const diff = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    marginLeft: '42.5%',
+    height: '50px',
+    width: '225px',
+    marginBottom: '20px',
+    textAlign: 'center'
+};
 
 class Question extends Component {
     state = {
@@ -116,24 +156,20 @@ class Question extends Component {
 
     render() {
         return (
-            <div className="container center">
+            <div className="center" style={style}>
                 <div className="row">
                     <div className="col s12 m6">
-                        <div className="card blue-grey darken-1">
-                            <div className="card-content white-text">
+                                <div style={inst}>
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
-                                <div>
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : ''}<br /><br />
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question :        <a className="waves-effect waves-light btn-large" href="/endGame" onClick={console.log("CLICKED")} style={button}>End Game</a>}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck}>{answer}</Button><br /><br /></div>
+                                        <div><a type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</a><br /><br /></div>
                                     )) : ''}
                                     < br />
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <Footer style={style} playerScore={this.state.playerScore} playerWrong={this.state.playerWrong}></Footer>
+                <Footer style={footerStyle} playerScore={this.state.playerScore} playerWrong={this.state.playerWrong}></Footer>
             </div >
         );
     }
