@@ -4,7 +4,8 @@ import Countdown from '../Countdown/Countdown'
 import './question.css'
 import Footer from '../Footer'
 import Button from '../../../node_modules/react-materialize/lib/Button';
-// import ResultsPage from '../ResultsPage'
+// import ResultsPage from '../ResultsPage/ResultsPage';
+import ResultsPage from '../ResultsPage'
 
 
 const footerStyle = {
@@ -134,10 +135,6 @@ class Question extends Component {
         }
     }
 
-    endGame = () => {
- 
-    }
-
     clickCheck = event => {
         let answer = event.target.id
 
@@ -166,10 +163,10 @@ class Question extends Component {
                     <div className="col s12 m6">
                                 <div style={inst}>
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <a className="waves-effect waves-light btn-large" href="/endGame" onClick={console.log("CLICKED")} style={button}>End Game</a>}<br /><br />
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <ResultsPage/>}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
                                         <div><Button id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</Button><br /><br /></div>
-                                    )) : ''}
+                                    )) : <ResultsPage/>}
                                     < br />
                         </div>
                     </div>
