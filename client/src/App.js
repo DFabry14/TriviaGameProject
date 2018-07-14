@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NavBar from "./components/NavBar";
+// import NavBar from "./components/NavBar";
 import Jumbotron from "./components/Jumbotron";
 import { firebase } from "./firebase";
 import Question from './components/Questions';
@@ -13,8 +13,8 @@ class App extends Component {
     correctAnswer: '',
     wrongAnswers: [],
     allAnswers: [],
-    // playerScore: 0,
-    // playerWrong: 0
+    playerScore: 0,
+    playerWrong: 0
 
   };
 
@@ -38,14 +38,14 @@ class App extends Component {
   render() {
     return (
       <div>
-        <NavBar username={this.state.trueUser}></NavBar>
+        {/* <NavBar username={this.state.trueUser}></NavBar> */}
         <Jumbotron>
         </Jumbotron>
         <Router>
           <div>
             <Route exact path="/" component={StartPage} />
             <Route exact path="/game" component={Question} />
-            {/* <Route exact path="/endGame" component={ResultsPage} /> */}
+            <Route exact path="/endGame" component={ResultsPage} />
           </div>
         </Router>
       </div>

@@ -1,14 +1,14 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
 import Countdown from '../Countdown/Countdown'
-import { Button } from 'react-materialize'
 import './question.css'
-// import ResultsPage from '../ResultsPage';
 import Footer from '../Footer'
-import ResultsPage from '../ResultsPage';
+import Button from '../../../node_modules/react-materialize/lib/Button';
+// import ResultsPage from '../ResultsPage/ResultsPage';
+import ResultsPage from '../ResultsPage'
 
 
-const style = {
+const footerStyle = {
     position: "fixed",
     bottom: "0px",
     backgroundColor: "grey",
@@ -17,8 +17,51 @@ const style = {
     borderTopStyle: "solid",
     borderTopColor: "orange"
 }
+const style = {
+    display: "flex",
+    textAlign: "center",
+    backgroundColor: "blue",
+    height: "700px",
+    marginTop: "-30px"
+};
+const button = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    height: '50px',
+    width: 'auto',
+    padding: '0 40px',
+
+};
+const inst = {
+    textAlign: "center",
+    fontFamily: "Contrail One",
+    fontSize: "30px",
+    color: "orange",
+    paddingTop: "30px"
+};
+// const headline = {
+//     fontSize: "42px",
+//     color: "orange",
+//     textAlign: "center",
+//     fontFamily: 'Contrail One',
+//     paddingTop: '50px'
+// };
+// const diff = {
+//     fontFamily: 'Contrail One',
+//     fontSize: '32px',
+//     color: 'orange',
+//     backgroundColor: 'black',
+//     marginLeft: '42.5%',
+//     height: '50px',
+//     width: '225px',
+//     marginBottom: '20px',
+//     textAlign: 'center'
+// };
 
 class Question extends Component {
+
     state = {
         questions: null,
         counter: 0,
@@ -27,6 +70,7 @@ class Question extends Component {
         answerCorrect: null,
         isDisabled: false
     };
+    
 
     componentWillMount() {
         API.getQuestions("easy")
@@ -91,11 +135,6 @@ class Question extends Component {
         }
     }
 
-    endGame = () => {
-
-            console.log("End of game!");
-    }
-
     clickCheck = event => {
         let answer = event.target.id
 
@@ -119,25 +158,20 @@ class Question extends Component {
 
     render() {
         return (
-            <div className="container center">
+            <div className="center" style={style}>
                 <div className="row">
                     <div className="col s12 m6">
-                        <div className="card blue-grey darken-1">
-                            <div className="card-content white-text">
+                                <div style={inst}>
                                 <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
-                                <div>
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : this.endGame()}<br /><br />
+                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <ResultsPage/>}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><Button type="submit" id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} handleTimeout={this.handleTimeout}>{answer}</Button><br /><br /></div>
-                                    )) : this.endGame()}
+                                        <div><Button id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</Button><br /><br /></div>
+                                    )) : <ResultsPage/>}
                                     < br />
-                                    {/* <ResultsPage playerScore={this.state.playerScore}/> */}
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
-                <Footer style={style} playerScore={this.state.playerScore} playerWrong={this.state.playerWrong}></Footer>
+                <Footer style={footerStyle} playerScore={this.state.playerScore} playerWrong={this.state.playerWrong}></Footer>
             </div >
         );
     }

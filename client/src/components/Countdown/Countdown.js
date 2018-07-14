@@ -1,22 +1,30 @@
 import React, { Component } from "react";
+// import ResultsPage from '../ResultsPage/ResultsPage'
 
 
 class Countdown extends Component {
-  state = { currentCount: 10 }
+  state = {
+    currentCount: 3,
+    totalCount: 0
+  }
 
   timer = () => {
     this.setState({
       currentCount: this.state.currentCount - 1
     })
+
     if (this.state.currentCount < 1 || this.state.onClick === true) {
       // clearInterval(this.intervalId);
-      console.log('timer expired, playerWrong ++')
-      this.setState({currentCount: 10})
+      this.setState({totalCount: this.state.totalCount + 1})
+      this.setState({ currentCount: 3 })
       this.props.handleTimeout();
-    } else if (this.state.onClick) {
-        this.setState({currentCount: this.state.currentCount + 1})
-  } else {
-      console.log(this.state.currentCount);
+    } else if (this.state.totalCount > 9) {
+      this.setState({currentCount: null})
+      console.log("End of Game")
+      clearInterval(this.intervalId);
+    } else {
+      // console.log(this.state.currentCount);
+      console.log(this.state.totalCount);
     }
   }
   componentDidMount() {

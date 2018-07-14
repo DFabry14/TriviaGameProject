@@ -4,8 +4,8 @@ const style = {
     position: "fixed",
     bottom: "0px",
     backgroundColor: "grey",
-    width: "68%",
-    height: "60px",
+    width: "100%",
+    height: "80px",
     marginTop: "0px", 
     borderTopStyle: "solid",
     borderTopColor: "orange"
