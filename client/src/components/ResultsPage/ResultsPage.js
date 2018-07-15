@@ -1,23 +1,12 @@
 import React from "react"
-import { Footer } from "react-materialize"
-import './ResultsPage.css'
-import '../Questions'
+// import './ResultsPage.css'
 
 const style = {
     backgroundColor: "blue",
     height: "700px",
     marginTop: "-30px"
 };
-const footerStyle = {
-    position: "fixed",
-    bottom: "0px",
-    backgroundColor: "grey",
-    height: "80px",
-    width: "100%",
-    marginTop: "0px",
-    borderTopStyle: "solid",
-    borderTopColor: "orange"
-}
+
 const button = {
     fontFamily: 'Contrail One',
     fontSize: '32px',
@@ -62,7 +51,7 @@ const headline = {
 //     textAlign: 'center'
 // };
 
-const ResultsPage = () => (
+const ResultsPage = (props) => (
     <div className="start" style={style}>
         <div className="button">
             <p className="instructions" style={headline}>
@@ -70,14 +59,11 @@ const ResultsPage = () => (
                 <ul style={inst}>
                     <li>You did great! </li>
                     <li>Your score is:</li><br/>
-                    <li></li>
+                    <li>{props.playerScore}</li>
                 </ul>
             </p>
         </div>
         <a className="waves-effect waves-light btn-large" href="/" onClick={console.log("CLICKED")} style={button}>Play Again!</a>
-        <div>
-        <Footer style={footerStyle}></Footer>
-        </div>
     </div>
 );
 

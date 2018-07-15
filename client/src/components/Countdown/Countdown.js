@@ -19,9 +19,9 @@ class Countdown extends Component {
       this.setState({ currentCount: 3 })
       this.props.handleTimeout();
     } else if (this.state.totalCount > 9) {
+      clearInterval(this.intervalId);
       this.setState({currentCount: null})
       console.log("End of Game")
-      clearInterval(this.intervalId);
     } else {
       // console.log(this.state.currentCount);
       console.log(this.state.totalCount);

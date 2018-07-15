@@ -162,16 +162,26 @@ class Question extends Component {
                 <div className="row">
                     <div className="col s12 m6">
                                 <div style={inst}>
-                                <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <ResultsPage/>}<br /><br />
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><Button id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</Button><br /><br /></div>
-                                    )) : <ResultsPage/>}
+                                <h2><Countdown
+                                 handleTimeout={this.handleTimeout} /></h2>
+                                    {this.state.questions && this.state.counter < 10 ? 
+                                    this.state.questions[this.state.counter].question : <ResultsPage playerScore={this.state.playerScore}/>}<br /><br />
+                                    {this.state.questions && this.state.counter < 10 ? 
+                                     this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
+                                        <div><Button id={correct}
+                                         disabled={this.state.isDisabled}
+                                         onClick={this.clickCheck} 
+                                         style={button}>
+                                         {answer}</Button><br /><br /></div>
+                                    )) : <ResultsPage playerScore={this.state.playerScore}/>}
                                     < br />
                         </div>
                     </div>
                 </div>
-                <Footer style={footerStyle} playerScore={this.state.playerScore} playerWrong={this.state.playerWrong}></Footer>
+                <Footer style={footerStyle} 
+                playerScore={this.state.playerScore} 
+                playerWrong={this.state.playerWrong}>
+                </Footer>
             </div >
         );
     }
