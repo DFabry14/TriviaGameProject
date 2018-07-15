@@ -60,6 +60,10 @@ const inst = {
 //     textAlign: 'center'
 // };
 
+setTimeout(() => {
+    
+}, 3000);
+
 class Question extends Component {
 
     state = {
@@ -135,6 +139,7 @@ class Question extends Component {
         }
     }
 
+
     clickCheck = event => {
         let answer = event.target.id
 
@@ -165,7 +170,10 @@ class Question extends Component {
                                 <h2><Countdown
                                  handleTimeout={this.handleTimeout} /></h2>
                                     {this.state.questions && this.state.counter < 10 ? 
-                                    this.state.questions[this.state.counter].question : <ResultsPage playerScore={this.state.playerScore}/>}<br /><br />
+                                    this.state.questions[this.state.counter].question : 
+                                    <ResultsPage
+                                    setTimeout={this.setTimeout} 
+                                    playerScore={this.state.playerScore}/>}<br /><br />
                                     {this.state.questions && this.state.counter < 10 ? 
                                      this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
                                         <div><Button id={correct}

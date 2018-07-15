@@ -1,5 +1,6 @@
 import React from "react"
 // import './ResultsPage.css'
+import Delay from'react-delay'
 
 const style = {
     backgroundColor: "blue",
@@ -30,6 +31,11 @@ const headline = {
     fontFamily: 'Contrail One',
     paddingTop: '50px'
 };
+
+const score = {
+    fontSize: "64px"
+}
+
 // const footerStyle = {
 //     position: "fixed",
 //     bottom: "0px",
@@ -51,7 +57,13 @@ const headline = {
 //     textAlign: 'center'
 // };
 
+setTimeout(() => {
+
+}, 3000);
+
 const ResultsPage = (props) => (
+    <Delay
+    wait={300}>
     <div className="start" style={style}>
         <div className="button">
             <p className="instructions" style={headline}>
@@ -59,12 +71,13 @@ const ResultsPage = (props) => (
                 <ul style={inst}>
                     <li>You did great! </li>
                     <li>Your score is:</li><br/>
-                    <li>{props.playerScore}</li>
+                    <li style={score}>{props.playerScore}</li>
                 </ul>
             </p>
         </div>
         <a className="waves-effect waves-light btn-large" href="/" onClick={console.log("CLICKED")} style={button}>Play Again!</a>
     </div>
+    </Delay>
 );
 
 export default ResultsPage;
