@@ -39,8 +39,7 @@ class App extends Component {
     return (
       <div>
         {/* <NavBar username={this.state.trueUser}></NavBar> */}
-        <Jumbotron>
-        </Jumbotron>
+        <Jumbotron/>
         <Router>
           <div>
             <Route exact path="/" component={StartPage} />

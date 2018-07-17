@@ -21,10 +21,10 @@ class Countdown extends Component {
     } else if (this.state.totalCount > 9) {
       clearInterval(this.intervalId);
       this.setState({currentCount: null})
-      console.log("End of Game")
+      // console.log("End of Game")
     } else {
       // console.log(this.state.currentCount);
-      console.log(this.state.totalCount);
+      // console.log(this.state.totalCount);
     }
   }
   componentDidMount() {

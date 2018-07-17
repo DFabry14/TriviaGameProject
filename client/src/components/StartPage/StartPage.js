@@ -65,12 +65,14 @@ const diff = {
 
 class StartPage extends Component {
 
+    
     state = {
         email: "",
         password: "",
-        error: null
+        error: null,
+        difficulty: null
     }
-
+  
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -101,13 +103,30 @@ class StartPage extends Component {
         auth.doSignOut();
     }
 
+    handleChange = value => {
+        this.setState({difficulty: value})
+        console.log(this.state.difficulty.currentTarget.options.selectedIndex)
+        let selection = this.state.difficulty.currentTarget.options.selectedIndex;
+        if (selection === 0) {
+            this.setState({difficulty: 'easy'})
+            console.log(this.state.difficulty)
+        } else if (selection === 1) {
+            this.setState({difficulty: 'medium'})
+            console.log(this.state.difficulty)
+        } else if (selection === 2) {
+            this.setState({difficulty: 'hard'})
+            console.log(this.state.difficulty)
+        }
+    }
+
+ 
+
     render() {
         return (
-
             <div className="start" style={style}>
                 <div className="button">
                     <p className="instructions" style={headline}>
-                        Instructions:
+                        Instructions:</p>
                 <ul style={inst}>
                             <li>Login to your account below.</li>
                             <li>Invite friends to play with you!</li>
@@ -115,9 +134,8 @@ class StartPage extends Component {
                             <li>Choose your desired difficulty in the dropdown.</li>
                             <li>Click "Start Game" when you're ready to begin!</li>
                         </ul>
-                    </p>
                     <Row style={diff}>
-                        <Input s={12} type='select' defaultValue='easy' style={diff}>
+                        <Input onChange={this.handleChange} s={12} type='select'  style={diff}>
                             <option value='easy'>Easy</option>
                             <option value='medium'>Medium</option>
                             <option value='hard'>Hard</option>
@@ -149,7 +167,7 @@ class StartPage extends Component {
                         </div>
                     </Modal><br />
                 </div>
-                <a className="waves-effect waves-light btn-large" href="/game" onClick={console.log("CLICKED")} style={button}>Start Game</a>
+                <a className="waves-effect waves-light btn-large" href="/game" style={button}>Start Game</a>
                 <div>
                     <Footer style={footerStyle}></Footer>
                 </div>

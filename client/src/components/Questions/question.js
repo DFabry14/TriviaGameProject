@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
+// import Link from 'react-router-dom'
 import Countdown from '../Countdown/Countdown'
 import './question.css'
 import Footer from '../Footer'
 import Button from '../../../node_modules/react-materialize/lib/Button';
-// import ResultsPage from '../ResultsPage/ResultsPage';
 import ResultsPage from '../ResultsPage'
+// import StartPage from '../StartPage'
+
 
 
 const footerStyle = {
@@ -60,14 +62,10 @@ const inst = {
 //     textAlign: 'center'
 // };
 
-setTimeout(() => {
-    
-}, 3000);
-
 class Question extends Component {
-
+   
     state = {
-        questions: null,
+        questions: null,    
         counter: 0,
         playerScore: 0,
         playerWrong: 0,
@@ -75,9 +73,9 @@ class Question extends Component {
         isDisabled: false
     };
     
-
     componentWillMount() {
-        API.getQuestions("easy")
+        console.log(this.props)
+        API.getQuestions('easy')
             .then(res => {
                 const questions = []
                 for (let i = 0; i < 10; i++) {
@@ -109,6 +107,7 @@ class Question extends Component {
             })
     }
 
+    
 
     shuffle = data => {
         let i = data.length - 1;
@@ -169,14 +168,14 @@ class Question extends Component {
                                 <div style={inst}>
                                 <h2><Countdown
                                  handleTimeout={this.handleTimeout} /></h2>
+                                 <div id="question">
                                     {this.state.questions && this.state.counter < 10 ? 
-                                    this.state.questions[this.state.counter].question : 
-                                    <ResultsPage
-                                    setTimeout={this.setTimeout} 
-                                    playerScore={this.state.playerScore}/>}<br /><br />
+                                    this.state.questions[this.state.counter].question : ''}
+                                    </div>
                                     {this.state.questions && this.state.counter < 10 ? 
                                      this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><Button id={correct}
+                                        <div><Button 
+                                         id={correct}
                                          disabled={this.state.isDisabled}
                                          onClick={this.clickCheck} 
                                          style={button}>
