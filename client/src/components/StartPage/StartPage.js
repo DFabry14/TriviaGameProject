@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Row, Input, Modal, Footer } from "react-materialize"
+import { Modal, Footer } from "react-materialize"
 import { auth } from "../../firebase"
 // import Question from "../Questions"
 
@@ -51,28 +51,27 @@ const headline = {
     fontFamily: 'Contrail One',
     paddingTop: '50px'
 };
-const diff = {
-    fontFamily: 'Contrail One',
-    fontSize: '32px',
-    color: 'orange',
-    backgroundColor: 'black',
-    marginLeft: '42.5%',
-    height: '50px',
-    width: '225px',
-    marginBottom: '20px',
-    textAlign: 'center'
-};
+// const diff = {
+//     fontFamily: 'Contrail One',
+//     fontSize: '32px',
+//     color: 'orange',
+//     backgroundColor: 'black',
+//     marginLeft: '42.5%',
+//     height: '50px',
+//     width: '225px',
+//     marginBottom: '20px',
+//     textAlign: 'center'
+// };
 
 class StartPage extends Component {
 
-    
     state = {
         email: "",
         password: "",
         error: null,
         difficulty: null
     }
-  
+
     handleInputChange = event => {
         const { name, value } = event.target;
         this.setState({
@@ -104,22 +103,22 @@ class StartPage extends Component {
     }
 
     handleChange = value => {
-        this.setState({difficulty: value})
+        this.setState({ difficulty: value })
         console.log(this.state.difficulty.currentTarget.options.selectedIndex)
         let selection = this.state.difficulty.currentTarget.options.selectedIndex;
         if (selection === 0) {
-            this.setState({difficulty: 'easy'})
+            this.setState({ difficulty: 'easy' })
             console.log(this.state.difficulty)
         } else if (selection === 1) {
-            this.setState({difficulty: 'medium'})
+            this.setState({ difficulty: 'medium' })
             console.log(this.state.difficulty)
         } else if (selection === 2) {
-            this.setState({difficulty: 'hard'})
+            this.setState({ difficulty: 'hard' })
             console.log(this.state.difficulty)
         }
     }
 
- 
+
 
     render() {
         return (
@@ -127,20 +126,20 @@ class StartPage extends Component {
                 <div className="button">
                     <p className="instructions" style={headline}>
                         Instructions:</p>
-                <ul style={inst}>
-                            <li>Login to your account below.</li>
-                            <li>Invite friends to play with you!</li>
-                            <li>You will be shown ten questions and get five seconds to answer each one.</li>
-                            <li>Choose your desired difficulty in the dropdown.</li>
-                            <li>Click "Start Game" when you're ready to begin!</li>
-                        </ul>
-                    <Row style={diff}>
-                        <Input onChange={this.handleChange} s={12} type='select'  style={diff}>
-                            <option value='easy'>Easy</option>
-                            <option value='medium'>Medium</option>
-                            <option value='hard'>Hard</option>
+                    <ul style={inst}>
+                        <li>Login to your account below.</li>
+                        <li>Invite friends to play with you!</li>
+                        <li>You will be shown ten questions and get five seconds to answer each one.</li>
+                        <li>Choose your desired difficulty in the dropdown.</li>
+                        <li>Click "Start Game" when you're ready to begin!</li>
+                    </ul>
+                    {/* <Row style={diff}>
+                        <Input onChange={this.handleChange} s={12} type='select'>
+                            <option style={diff} value='easy'>Easy</option>
+                            <option style={diff} value='medium'>Medium</option>
+                            <option style={diff} value='hard'>Hard</option>
                         </Input>
-                    </Row>
+                    </Row> */}
                     <Modal
                         style={font}
                         header='Please login or create a profile:'
@@ -167,7 +166,7 @@ class StartPage extends Component {
                         </div>
                     </Modal><br />
                 </div>
-                <a className="waves-effect waves-light btn-large" href="/game" style={button}>Start Game</a>
+                <a className="waves-effect waves-light btn-large" href="/game" onClick={() => this.state.difficulty} style={button}>Start Game</a>
                 <div>
                     <Footer style={footerStyle}></Footer>
                 </div>

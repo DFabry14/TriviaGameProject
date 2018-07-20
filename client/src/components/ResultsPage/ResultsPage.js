@@ -1,7 +1,7 @@
 import React from "react"
 // import './ResultsPage.css'
 import { Footer }    from 'react-materialize'
-// import Delay from 'react-delay'
+import Delay from 'react-delay'
 
 const style = {
     backgroundColor: "blue",
@@ -60,12 +60,8 @@ const footerStyle = {
 //     textAlign: 'center'
 // };
 
-setTimeout(() => {
-
-}, 3000);
-
 const ResultsPage = (props) => (
-
+        <Delay wait={300}>
         <div className="start" style={style}>
             <div className="button">
                 <div className="instructions" style={headline}>
@@ -82,6 +78,7 @@ const ResultsPage = (props) => (
                     <Footer style={footerStyle}></Footer>
                 </div>
         </div>
+        </Delay>
 );
 
 export default ResultsPage;

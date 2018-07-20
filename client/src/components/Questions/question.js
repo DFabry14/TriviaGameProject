@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
-// import Link from 'react-router-dom'
+// import { Route } from 'react-router-dom'
 import Countdown from '../Countdown/Countdown'
 import './question.css'
 import Footer from '../Footer'
@@ -63,18 +63,19 @@ const inst = {
 // };
 
 class Question extends Component {
-   
+ 
+
     state = {
         questions: null,    
         counter: 0,
         playerScore: 0,
         playerWrong: 0,
         answerCorrect: null,
-        isDisabled: false
+        isDisabled: false, 
     };
-    
+   
     componentWillMount() {
-        console.log(this.props)
+        // console.log(this.props.children)
         API.getQuestions('easy')
             .then(res => {
                 const questions = []
@@ -99,9 +100,9 @@ class Question extends Component {
                         },
                     ];
                         questions.push({
-                        question: res.data.results[i].question,
+                        question: decodeURI(res.data.results[i].question),
                         answers: this.shuffle(answers)
-                    });
+                    }); 
                 }
                 this.setState({ questions }) 
             })
@@ -138,10 +139,8 @@ class Question extends Component {
         }
     }
 
-
     clickCheck = event => {
         let answer = event.target.id
-
         if (answer === "correct") {
             this.setState({ 
                 isDisabled: !this.state.isDisabled,
@@ -154,7 +153,6 @@ class Question extends Component {
                 isDisabled: !this.state.isDisabled,
                 answerCorrect: null,
                 playerWrong: this.state.playerWrong + 1,
-
                 // counter: this.state.counter + 1
             });
         }
