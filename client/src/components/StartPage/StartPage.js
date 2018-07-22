@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { Modal, Footer } from "react-materialize"
+import { Modal, Footer, Row, Input } from "react-materialize"
 import { auth } from "../../firebase"
 // import Question from "../Questions"
 
@@ -51,17 +51,17 @@ const headline = {
     fontFamily: 'Contrail One',
     paddingTop: '50px'
 };
-// const diff = {
-//     fontFamily: 'Contrail One',
-//     fontSize: '32px',
-//     color: 'orange',
-//     backgroundColor: 'black',
-//     marginLeft: '42.5%',
-//     height: '50px',
-//     width: '225px',
-//     marginBottom: '20px',
-//     textAlign: 'center'
-// };
+const diff = {
+    fontFamily: 'Contrail One',
+    fontSize: '32px',
+    color: 'orange',
+    backgroundColor: 'black',
+    marginLeft: '42.5%',
+    height: '50px',
+    width: '225px',
+    marginBottom: '20px',
+    textAlign: 'center'
+};
 
 class StartPage extends Component {
 
@@ -133,13 +133,13 @@ class StartPage extends Component {
                         <li>Choose your desired difficulty in the dropdown.</li>
                         <li>Click "Start Game" when you're ready to begin!</li>
                     </ul>
-                    {/* <Row style={diff}>
+                    <Row style={diff}>
                         <Input onChange={this.handleChange} s={12} type='select'>
                             <option style={diff} value='easy'>Easy</option>
                             <option style={diff} value='medium'>Medium</option>
                             <option style={diff} value='hard'>Hard</option>
                         </Input>
-                    </Row> */}
+                    </Row>
                     <Modal
                         style={font}
                         header='Please login or create a profile:'
