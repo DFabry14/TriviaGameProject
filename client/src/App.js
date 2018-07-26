@@ -23,7 +23,7 @@ class App extends Component {
       if (firebaseUser) {
         console.log(`firebaseUser=${firebaseUser}`);
         var trueUser = firebaseUser.email;
-        console.log("trueUs er=", trueUser);
+        console.log("trueUser=", trueUser);
         this.setState({ trueUser })
 
 
@@ -35,19 +35,17 @@ class App extends Component {
 
   };
 
+  
   render() {
     return (
       <div>
         {/* <NavBar username={this.state.trueUser}></NavBar> */}
-        <Jumbotron>
-        </Jumbotron>
-        <Router>
+        <Jumbotron/>
           <div>
             <Route exact path="/" component={StartPage} />
             <Route exact path="/game" component={Question} />
             <Route exact path="/endGame" component={ResultsPage} />
           </div>
-        </Router>
       </div>
     );
   }

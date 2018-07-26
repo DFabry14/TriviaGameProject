@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import API from '../../utils/API'
+// import { Route } from 'react-router-dom'
 import Countdown from '../Countdown/Countdown'
 import './question.css'
 import Footer from '../Footer'
 import Button from '../../../node_modules/react-materialize/lib/Button';
-// import ResultsPage from '../ResultsPage/ResultsPage';
 import ResultsPage from '../ResultsPage'
+// import StartPage from '../StartPage'
+
 
 
 const footerStyle = {
@@ -61,19 +63,20 @@ const inst = {
 // };
 
 class Question extends Component {
+ 
 
     state = {
-        questions: null,
+        questions: null,    
         counter: 0,
         playerScore: 0,
         playerWrong: 0,
         answerCorrect: null,
-        isDisabled: false
+        isDisabled: false, 
     };
-    
-
+   
     componentWillMount() {
-        API.getQuestions("easy")
+        // console.log(this.props.children)
+        API.getQuestions('easy')
             .then(res => {
                 const questions = []
                 for (let i = 0; i < 10; i++) {
@@ -97,14 +100,15 @@ class Question extends Component {
                         },
                     ];
                         questions.push({
-                        question: res.data.results[i].question,
+                        question: decodeURI(res.data.results[i].question),
                         answers: this.shuffle(answers)
-                    });
+                    }); 
                 }
                 this.setState({ questions }) 
             })
     }
 
+    
 
     shuffle = data => {
         let i = data.length - 1;
@@ -137,7 +141,6 @@ class Question extends Component {
 
     clickCheck = event => {
         let answer = event.target.id
-
         if (answer === "correct") {
             this.setState({ 
                 isDisabled: !this.state.isDisabled,
@@ -150,7 +153,6 @@ class Question extends Component {
                 isDisabled: !this.state.isDisabled,
                 answerCorrect: null,
                 playerWrong: this.state.playerWrong + 1,
-
                 // counter: this.state.counter + 1
             });
         }
@@ -162,16 +164,29 @@ class Question extends Component {
                 <div className="row">
                     <div className="col s12 m6">
                                 <div style={inst}>
-                                <h2><Countdown handleTimeout={this.handleTimeout} /></h2>
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].question : <ResultsPage/>}<br /><br />
-                                    {this.state.questions && this.state.counter < 10 ? this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
-                                        <div><Button id={correct} disabled={this.state.isDisabled} onClick={this.clickCheck} style={button}>{answer}</Button><br /><br /></div>
-                                    )) : <ResultsPage/>}
+                                <h2><Countdown
+                                 handleTimeout={this.handleTimeout} /></h2>
+                                 <div id="question">
+                                    {this.state.questions && this.state.counter < 10 ? 
+                                    this.state.questions[this.state.counter].question : ''}
+                                    </div>
+                                    {this.state.questions && this.state.counter < 10 ? 
+                                     this.state.questions[this.state.counter].answers.map(({correct, answer}) => (
+                                        <div><Button 
+                                         id={correct}
+                                         disabled={this.state.isDisabled}
+                                         onClick={this.clickCheck} 
+                                         style={button}>
+                                         {answer}</Button><br /><br /></div>
+                                    )) : <ResultsPage playerScore={this.state.playerScore}/>}
                                     < br />
                         </div>
                     </div>
                 </div>
-                <Footer style={footerStyle} playerScore={this.state.playerScore} playerWrong={this.state.playerWrong}></Footer>
+                <Footer style={footerStyle} 
+                playerScore={this.state.playerScore} 
+                playerWrong={this.state.playerWrong}>
+                </Footer>
             </div >
         );
     }

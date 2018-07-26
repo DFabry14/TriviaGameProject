@@ -1,5 +1,5 @@
 import axios from "axios";
-const BASEURL = "https://opentdb.com/api.php?amount=111&difficulty=";
+const BASEURL = "https://opentdb.com/api.php?amount=10&difficulty=";
 const ENDURL = "&type=multiple";
 
 
